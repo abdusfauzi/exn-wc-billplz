@@ -1,9 +1,9 @@
-<img src="https://raw.githubusercontent.com/abdusfauzi/exn-wc-billplz/master/assets/billplz-logo-32.png" height="32"> Billplz WooCommerce Plugin
+<img src="https://raw.githubusercontent.com/abdusfauzi/exn-wc-billplz/master/assets/billplz-logo-64.png" height="26"> Billplz WooCommerce Plugin
 =====================
 
 Billplz Plugin for WooCommerce (Wordpress) developed by Exnano Creative team.
 
-Download plugin [from here](https://github.com/abdusfauzi/exn-wc-billplz/archive/master.zip) and rename to `exn-wc-billplz`.
+Download plugin [from here &#8681;](https://github.com/abdusfauzi/exn-wc-billplz/archive/master.zip) and rename to `exn-wc-billplz`.
 
 
 Notes
