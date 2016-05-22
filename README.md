@@ -1,9 +1,7 @@
 <img src="https://raw.githubusercontent.com/abdusfauzi/exn-wc-billplz/master/assets/billplz-logo-64.png" height="26"> Billplz WooCommerce Plugin
 =====================
 
-Billplz Plugin for WooCommerce (Wordpress) developed by Exnano Creative team.
-
-Download plugin [from here &#8681;](https://github.com/abdusfauzi/exn-wc-billplz/archive/master.zip) and rename to `exn-wc-billplz`.
+Billplz Payment Gateway for WooCommerce (Wordpress) developed by Exnano Creative team. Download plugin [from here &#8681;](https://github.com/abdusfauzi/exn-wc-billplz/archive/master.zip) and rename to `exn-wc-billplz`.
 
 
 Notes
@@ -11,12 +9,12 @@ Notes
 Exnano Creative is not responsible for any problems that might arise from the use of this module.
 Use at your own risk. Please backup any critical data before proceeding. For any query or assistance, please submit issue to [this repo](https://github.com/abdusfauzi/exn-wc-billplz/issues).
 
-[BILLPLZ SDN BHD (1023853P)](https://www.billplz.com) is not associated with the development of this plugin, even though the paymeny gateway API was provided by the company.
+BILLPLZ SDN BHD (1023853P) [billplz.com](https://www.billplz.com) is not associated with the development of this plugin, even though the payment gateway API was provided by the company.
 
 
 Malaysian Banks Supported
 -----
-![FPX banks](https://raw.githubusercontent.com/abdusfauzi/exn-wc-billplz/master/assets/billplz-banks.png)
+<img src="https://raw.githubusercontent.com/abdusfauzi/exn-wc-billplz/master/assets/billplz-banks.png" height="66" alt="FPX Banks">
 
 
 Installations for Wordpress Plugin
