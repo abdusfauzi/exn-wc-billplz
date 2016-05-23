@@ -37,6 +37,9 @@ Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/is
 
 Changelog
 ------------
+**1.1.24**
+- Fix author proper name for proper_folder_name used by updater library
+
 **1.1.23**
 - Added `updater` library for Automatic update from Github repo
 - Fix author URI
