@@ -33,3 +33,14 @@ You can contribute to this plugin by submitting issue on [this repo](https://git
 Issues
 ------------
 Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/issues).
+
+
+Changelog
+------------
+**1.1.23**
+- Added `updater` library for Automatic update from Github repo
+- Fix author URI
+
+**1.0.23**
+- First release
+- First commit and publish to Github

@@ -1,26 +1,15 @@
 <?php
 /**
  * Plugin Name: WooCommerce Billplz
- * Plugin URI: https://abdusfauzi.com/
+ * Plugin URI: https://abdusfauzi.com
  * Description: The new payment gateway in Malaysia Asia to grow your business with Billplz payment solutions: FPX, Maybank, RHB, CIMB, Bank Islam, etc.
  * Author: Exnano Creative
- * Author URI: https:/abdusfauzi.com/
- * Version: 1.0.23
+ * Author URI: https://abdusfauzi.com
+ * Version: 1.1.23
  * License: MIT
  * Text Domain: exn-wc-billplz
  * For callback : http://websitedomain/wc-api/EXN_WC_Billplz
  */
-
-/**
- * If WooCommerce plugin is not available
- *
- */
-function exn_wc_billplz_woocommerce_fallback_notice() {
-    $message = '<div class="error">';
-    $message .= '<p>' . __( 'WooCommerce Billplz Gateway depends on the last version of <a href="http://wordpress.org/extend/plugins/woocommerce/">WooCommerce</a> to work!' , 'exn-wc-billplz' ) . '</p>';
-    $message .= '</div>';
-    echo $message;
-}
 
 /**
  * Load Billplz gateway plugin function
@@ -540,3 +529,42 @@ function exn_wc_billplz_gateway_load() {
 }
 //Load the function
 add_action( 'plugins_loaded', 'exn_wc_billplz_gateway_load' );
+
+
+/**
+ * If WooCommerce plugin is not available
+ *
+ */
+function exn_wc_billplz_woocommerce_fallback_notice() {
+    $message = '<div class="error">';
+    $message .= '<p>' . __( 'WooCommerce Billplz Gateway depends on the last version of <a href="http://wordpress.org/extend/plugins/woocommerce/">WooCommerce</a> to work!' , 'exn-wc-billplz' ) . '</p>';
+    $message .= '</div>';
+    echo $message;
+}
+
+
+function exn_wc_billplz_updater() {
+	include_once 'updater/updater.php';
+
+	if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
+        $repo = 'abdusfauzi/exn-wc-billplz';
+
+		$config = array(
+			'slug' => plugin_basename( __FILE__ ),
+			'proper_folder_name' => 'github-updater',
+			'api_url' => 'https://api.github.com/repos/' . $repo,
+			'raw_url' => 'https://raw.github.com/' . $repo . '/master',
+			'github_url' => 'https://github.com/' . $repo,
+			'zip_url' => 'https://github.com/' . $repo . '/archive/master.zip',
+			'sslverify' => true,
+			'requires' => '4.0',
+			'tested' => '4.5.2',
+			'readme' => 'README.md',
+			'access_token' => '',
+		);
+
+		new WP_GitHub_Updater( $config );
+
+	}
+}
+add_action( 'init', 'exn_wc_billplz_updater' );
