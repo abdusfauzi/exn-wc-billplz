@@ -37,7 +37,7 @@ Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/is
 
 Changelog
 ------------
-**1.2.0** - 2016-05-24
+[2016-05-24] **1.2.0**
 - Fix banks icon image to responsive width (100%)
 - Fix payment status skipping Processing and supposedly not immediately Complete
 - Fix `replace_pay_button()` function
@@ -49,12 +49,12 @@ Changelog
 - Added: Migration helper to relocate data from `_billplz_id` to `_transaction_id`
 - Change: url to icon/image. Now use EXN_WC_BILLPLZ_URL constant
 
-**1.1.23 - 1.1.26** - 2016-05-23
+[2016-05-23] **1.1.23 - 1.1.26**
 - Fix author proper name for proper_folder_name used by updater library
 - Add `Tested up to` version
 - Added `updater` library for Automatic update from Github repo
 - Fix author URI
 
-**1.0.23** - 2016-05-22
+[2016-05-22] **1.0.23**
 - First release
 - First commit and publish to Github
