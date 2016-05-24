@@ -40,11 +40,14 @@ Changelog
 **1.2.0** - 2016-05-24
 - Fix banks icon image to responsive width (100%)
 - Fix payment status skipping Processing and supposedly not immediately Complete
+- Fix `replace_pay_button()` function
 - Dropped: `_billplz_id` meta, and use WooCommerce `_transaction_id`
 - Dropped: `_billplz_url`. Will use `$order->get_transaction_url()` by WooCommerce
 - Refactoring class, methods and variables
 - Added: note to Order based on Billplz status
 - Added: Sandbox Mode's input fields for API Secret Key & Collection Id
+- Added: Migration helper to relocate data from `_billplz_id` to `_transaction_id`
+- Change: url to icon/image. Now use EXN_WC_BILLPLZ_URL constant
 
 **1.1.23 - 1.1.26** - 2016-05-23
 - Fix author proper name for proper_folder_name used by updater library
