@@ -42,7 +42,7 @@ Changelog
 - Fix payment status skipping Processing and supposedly not immediately Complete
 - Fix `replace_pay_button()` function
 - Dropped: `_billplz_id` meta, and use WooCommerce `_transaction_id`
-- Dropped: `_billplz_url`. Will use `$order->get_transaction_url()` by WooCommerce
+- Dropped: `_billplz_url`. Will use `$payment_gateways[ $payment_method ]->get_transaction_url( $order )` by WooCommerce
 - Refactoring class, methods and variables
 - Added: note to Order based on Billplz status
 - Added: Sandbox Mode's input fields for API Secret Key & Collection Id
