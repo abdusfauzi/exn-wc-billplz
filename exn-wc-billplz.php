@@ -5,7 +5,7 @@
  * Description: The new payment gateway in Malaysia Asia to grow your business with Billplz payment solutions: FPX, Maybank, RHB, CIMB, Bank Islam, etc.
  * Author: Exnano Creative
  * Author URI: https://abdusfauzi.com
- * Version: 1.2.0
+ * Version: 1.2.1
  * Tested up to: 4.5.2
  * License: MIT
  * Text Domain: exn-wc-billplz
@@ -99,6 +99,12 @@ add_action( 'init', 'exn_wc_billplz_updater' );
  */
 function replace_pay_button( $actions, $order ) {
     $payment_method = $order->payment_method;
+
+    if ( WC()->payment_gateways() ) {
+        $payment_gateways = WC()->payment_gateways->payment_gateways();
+    } else {
+        $payment_gateways = array();
+    }
 
     if ( $payment_method ) {
         if ( isset( $payment_gateways[ $payment_method ] ) ) {
