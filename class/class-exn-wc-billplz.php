@@ -35,6 +35,7 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
         // Define user setting variables.
         $this->title                    = $this->settings['title'];
         $this->description              = $this->settings['description'];
+        $this->immediate_reduce_stock   = $this->settings['immediate_reduce_stock'];
         $this->secret_key               = $this->settings['secret_key'];
         $this->collection_id            = $this->settings['collection_id'];
         $this->collection_id_created    = $this->settings['collection_id_created'];
@@ -136,6 +137,13 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
                 'default' => __( 'Pay through Malaysian online banking such as FPX, CIMBClicks, Maybank2u, RHB Now, Bank Islam, etc.', 'exn-wc-billplz' ),
                 'desc_tip' => true
             ),
+            'immediate_reduce_stock' => array(
+                'title' => __( 'Reduce Stock', 'exn-wc-billplz' ),
+                'type' => 'checkbox',
+                'description' => 'This will immediately reduce your stock, even though payment has not been made. (Order status Pending). Best to be used with this <a href="https://wordpress.org/plugins/woocommerce-auto-restore-stock/">WooCommerce Auto Restore Stock</a>',
+                'label' => __( 'Enable Reduce Stock (Immediately!)', 'exn-wc-billplz' ),
+                'default' => 'no'
+            ),
             'secret_key' => array(
                 'title' => __( 'API Secret Key', 'exn-wc-billplz' ),
                 'type' => 'text',
@@ -186,6 +194,15 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
      */
     public function process_payment( $order_id ) {
         $order = new WC_Order( $order_id );
+
+        // Remove cart
+        WC()->cart->empty_cart();
+
+        // Immediately reduce stock for reservation
+        if ( $this->immediate_reduce_stock ) {
+            // Reduce stock levels
+    		$order->reduce_order_stock();
+        }
 
         $total = $order->order_total;
         $decimals = get_option( 'woocommerce_price_num_decimals' );
@@ -253,12 +270,14 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
 
             update_post_meta( $order->id, '_transaction_id', $billplz->id );
 
-            // Remove cart
-            WC()->cart->empty_cart();
-
             return array(
                 'result'   => 'success',
                 'redirect' => $billplz->url
+            );
+        } else {
+            return array(
+                'result'   => 'failed',
+                'redirect' => $order->get_checkout_payment_url( false )
             );
         }
     }
@@ -282,7 +301,7 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
             if ( !is_wp_error( $response ) ) {
                 $this->update_order_status( $response, $order );
             }
-        } elseif ( $order->status=='completed' ) {
+        } else {
             wp_redirect( $order->get_checkout_order_received_url() );
             exit;
         }
@@ -338,7 +357,16 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
         if ( $billplz->paid ) {
             if ( $order->status=='pending' ) {
                 $order->add_order_note( $callback . 'Billplz Payment Status: SUCCESSFUL'.'<br>Transaction ID: ' . $billplz->id . '<br/><a href="' . $billplz->url .'" class="button">View Bill</a>' );
+
+                if ( $this->immediate_reduce_stock ) {
+                    add_filter( 'woocommerce_payment_complete_reduce_order_stock', '__return_false' );
+                }
+
                 $order->payment_complete( $billplz->id );
+
+                if ( $this->immediate_reduce_stock ) {
+                    remove_filter( 'woocommerce_payment_complete_reduce_order_stock', '__return_false' );
+                }
 
                 if ( !$post_request ) {
                     wp_redirect( $order->get_checkout_order_received_url() );

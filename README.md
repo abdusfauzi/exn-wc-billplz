@@ -37,7 +37,11 @@ Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/is
 
 Changelog
 ------------
-[2016-05-24] -- **1.2.1**
+[2016-05-25] -- **1.3.0**
+- Fix: redirect to Thank You page if payment is no longer _pending_
+- Add: option in plugin settings to enable immediate stock reduction or not. Best use with [WooCommerce Auto Restore Stock](https://wordpress.org/plugins/woocommerce-auto-restore-stock/)
+
+[2016-05-24] -- **1.2.1 - 1.3.2**
 - Fix: pay button from My Account page should go back to Billplz
 
 [2016-05-24] -- **1.2.0**
