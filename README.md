@@ -37,6 +37,12 @@ Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/is
 
 Changelog
 ------------
+[2016-08-15] -- **1.4.0**
+- Add: new Auto Submit feature, redirect bills to selected payment solution provider (FPX/PayPal/Billplz), and skip Billplz landing page
+
+[2016-08-15] -- **1.3.1**
+- Fix: website url to non-https
+
 [2016-05-25] -- **1.3.0**
 - Fix: redirect to Thank You page if payment is no longer _pending_
 - Add: option in plugin settings to enable immediate stock reduction or not. Best use with [WooCommerce Auto Restore Stock](https://wordpress.org/plugins/woocommerce-auto-restore-stock/)

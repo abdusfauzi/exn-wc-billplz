@@ -40,6 +40,7 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
         $this->collection_id            = $this->settings['collection_id'];
         $this->collection_id_created    = $this->settings['collection_id_created'];
         $this->enable_sms               = $this->settings['enable_sms'];
+        $this->auto_submit              = $this->settings['auto_submit'];
         $this->sandbox                  = $this->settings['sandbox'];
         $this->sandbox_secret_key       = $this->settings['sandbox_secret_key'];
         $this->sandbox_collection_id    = $this->settings['sandbox_collection_id'];
@@ -137,13 +138,6 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
                 'default' => __( 'Pay through Malaysian online banking such as FPX, CIMBClicks, Maybank2u, RHB Now, Bank Islam, etc.', 'exn-wc-billplz' ),
                 'desc_tip' => true
             ),
-            'immediate_reduce_stock' => array(
-                'title' => __( 'Reduce Stock', 'exn-wc-billplz' ),
-                'type' => 'checkbox',
-                'description' => 'This will immediately reduce your stock, even though payment has not been made. (Order status Pending). Best to be used with this <a href="https://wordpress.org/plugins/woocommerce-auto-restore-stock/">WooCommerce Auto Restore Stock</a>',
-                'label' => __( 'Enable Reduce Stock (Immediately!)', 'exn-wc-billplz' ),
-                'default' => 'no'
-            ),
             'secret_key' => array(
                 'title' => __( 'API Secret Key', 'exn-wc-billplz' ),
                 'type' => 'text',
@@ -156,12 +150,31 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
                 'description' => __( 'Please enter your Billplz Collection ID.', 'exn-wc-billplz' ) . ' ' . sprintf( __( 'You can create or get this information in: %sBillplz Account%s.', 'exn-wc-billplz' ), '<a href="https://www.billplz.com/enterprise/billing" target="_blank">', '</a>' ),
                 'default' => ''
             ),
+            'immediate_reduce_stock' => array(
+                'title' => __( 'Reduce Stock', 'exn-wc-billplz' ),
+                'type' => 'checkbox',
+                'description' => 'This will immediately reduce your stock, even though payment has not been made. (Order status Pending). Best to be used with this <a href="https://wordpress.org/plugins/woocommerce-auto-restore-stock/">WooCommerce Auto Restore Stock</a>',
+                'label' => __( 'Enable Reduce Stock (Immediately!)', 'exn-wc-billplz' ),
+                'default' => 'no'
+            ),
             'enable_sms' => array(
                 'title' => __( 'SMS Notification', 'exn-wc-billplz' ),
                 'type' => 'checkbox',
                 'description' => 'Attention! For every sms sent, RM0.15 fee will be charged from your Billplz credit.',
                 'label' => __( 'Enable SMS notifcation', 'exn-wc-billplz' ),
                 'default' => 'no'
+            ),
+            'auto_submit' => array(
+                'title' => __( 'Auto Submit Payment', 'exn-wc-billplz' ),
+                'type' => 'select',
+                'description' => 'This feature will auto-submit any bill directly to selected payment provider, and skip Billplz landing page.',
+                'default' => 'disabled',
+                'options' => array(
+                    'disabled' => 'Disabled',
+                    'fpx' => 'FPX (Malaysia Banks)',
+                    'paypal' => 'PayPal',
+                    'billplz' => 'Billplz (Sandbox Mode)'
+                )
             ),
             'sandbox' => array(
                 'title' => __( 'Sandbox Mode', 'exn-wc-billplz' ),
@@ -267,12 +280,17 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
         if ( !is_wp_error( $response ) ) {
             // Retrieve the body's resopnse if no errors found
             $billplz = json_decode( wp_remote_retrieve_body( $response ) );
+            $url = $billplz->url;
 
             update_post_meta( $order->id, '_transaction_id', $billplz->id );
 
+            if ( $this->auto_submit != 'disabled' ) {
+                $url = $billplz->url . '?auto_submit=' . $this->auto_submit;
+            }
+
             return array(
                 'result'   => 'success',
-                'redirect' => $billplz->url
+                'redirect' => $url
             );
         } else {
             return array(
