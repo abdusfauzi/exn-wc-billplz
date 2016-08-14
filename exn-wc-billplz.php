@@ -4,8 +4,8 @@
  * Plugin URI: https://abdusfauzi.com
  * Description: The new payment gateway in Malaysia Asia to grow your business with Billplz payment solutions: FPX, Maybank, RHB, CIMB, Bank Islam, etc.
  * Author: Exnano Creative
- * Author URI: https://abdusfauzi.com
- * Version: 1.3.0
+ * Author URI: http://abdusfauzi.com
+ * Version: 1.3.1
  * Tested up to: 4.5.2
  * License: MIT
  * Text Domain: exn-wc-billplz
