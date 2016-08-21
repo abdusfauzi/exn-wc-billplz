@@ -38,7 +38,6 @@ class EXN_WC_Billplz extends WC_Payment_Gateway {
         $this->immediate_reduce_stock   = $this->settings['immediate_reduce_stock'];
         $this->secret_key               = $this->settings['secret_key'];
         $this->collection_id            = $this->settings['collection_id'];
-        $this->collection_id_created    = $this->settings['collection_id_created'];
         $this->enable_sms               = $this->settings['enable_sms'];
         $this->auto_submit              = $this->settings['auto_submit'];
         $this->sandbox                  = $this->settings['sandbox'];

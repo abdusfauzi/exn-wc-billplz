@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: WooCommerce Billplz
- * Plugin URI: https://abdusfauzi.com
+ * Plugin URI: http://abdusfauzi.com
  * Description: The new payment gateway in Malaysia Asia to grow your business with Billplz payment solutions: FPX, Maybank, RHB, CIMB, Bank Islam, etc.
  * Author: Exnano Creative
  * Author URI: http://abdusfauzi.com
- * Version: 1.4.0
+ * Version: 1.4.1
  * Tested up to: 4.5.3
  * License: MIT
  * Text Domain: exn-wc-billplz

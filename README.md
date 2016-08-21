@@ -37,6 +37,10 @@ Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/is
 
 Changelog
 ------------
+[2016-08-15] -- **1.4.1**
+- Fix: plugin url to non-https
+- Fix: remove unused option settings (collection_id_created)
+
 [2016-08-15] -- **1.4.0**
 - Add: new Auto Submit feature, redirect bills to selected payment solution provider (FPX/PayPal/Billplz), and skip Billplz landing page
 
