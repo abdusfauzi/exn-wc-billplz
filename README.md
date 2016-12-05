@@ -37,6 +37,9 @@ Submit issue to this [this repo](https://github.com/abdusfauzi/exn-wc-billplz/is
 
 Changelog
 ------------
+[2016-12-05] -- **1.4.2**
+- Fix: random class redeclaration errors on WP_GitHub_Updater class
+
 [2016-08-15] -- **1.4.1**
 - Fix: plugin url to non-https
 - Fix: remove unused option settings (collection_id_created)
